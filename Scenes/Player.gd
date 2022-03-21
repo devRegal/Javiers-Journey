@@ -39,7 +39,6 @@ func update_movement(delta):
 		desired_acceleration = acceleration
 	else:
 		desired_acceleration = deceleration
-		
 	vel.x += pow(abs(speed_difference) * desired_acceleration, speed_power) * sign(speed_difference) * delta
 	if abs(vel.x) < 0.5:
 		vel.x = 0.0
@@ -69,7 +68,7 @@ func double_jump():
 
 func wall_slide():
 	if state == "sliding":
-		vel = Vector2(0, slide_gravity)
+		vel.y = slide_gravity
 
 func update_direction():
 	if vel.x > 0 and direction == "left":
@@ -105,8 +104,11 @@ func update_animation():
 		
 
 func _physics_process(delta):
-	vel = move_and_slide_with_snap(vel, Vector2.DOWN ,Vector2.UP)
-	
+	print("Before: ")
+	print(vel)
+	vel = move_and_slide_with_snap(vel, Vector2.DOWN, Vector2.UP)
+	print("After: ")
+	print(vel)
 	update_input_direction()
 	update_movement(delta)
 	jump_and_fall(delta)
