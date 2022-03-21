@@ -104,11 +104,9 @@ func update_animation():
 		
 
 func _physics_process(delta):
-	print("Before: ")
-	print(vel)
+
 	vel = move_and_slide_with_snap(vel, Vector2.DOWN, Vector2.UP)
-	print("After: ")
-	print(vel)
+
 	update_input_direction()
 	update_movement(delta)
 	jump_and_fall(delta)
