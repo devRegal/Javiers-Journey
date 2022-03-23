@@ -24,6 +24,9 @@ var state : String = "idle"
 var direction : String = "right"
 onready var sprite : AnimatedSprite = get_node("AnimatedSprite")
 
+var hearts : int = 3
+var empty_heart = preload("res://UI Elements/empty_heart.png")
+
 
 func update_input_direction():
 	input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -101,7 +104,17 @@ func update_animation():
 		sprite.play("Jump Up")
 	elif state == "falling":
 		sprite.play("Fall Down")
-		
+
+func update_hud():
+	if hearts < 3:
+		get_parent().get_node("HUD").get_node("Heart3").set_texture(empty_heart)
+	if hearts < 2:
+		get_parent().get_node("HUD").get_node("Heart2").set_texture(empty_heart)
+
+
+func die():
+	if hearts < 1:
+		get_tree().change_scene("res://Scenes/Death Screen.tscn")
 
 func _physics_process(delta):
 
@@ -116,3 +129,6 @@ func _physics_process(delta):
 	update_direction()
 	update_state()
 	update_animation()
+
+	update_hud()
+	die()

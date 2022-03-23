@@ -1,6 +1,8 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scenes/Grass and Dirt Tileset.tres" type="TileSet" id=1]
+[ext_resource path="res://Scenes/HUD.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Bats.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Level_1.gd" type="Script" id=8]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Backgrounds/clouds.png" type="Texture" id=10]
@@ -112,3 +114,10 @@ tile_data = PoolIntArray( 1376270, 7, 0, 1441806, 1610612742, 0, 1507342, 161061
 autoplay = "Move"
 playback_process_mode = 0
 anims/Move = SubResource( 1 )
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="KinematicBody2D" parent="Enemies" instance=ExtResource( 3 )]
+position = Vector2( -112, -80 )
+
+[node name="HUD" parent="." instance=ExtResource( 2 )]
