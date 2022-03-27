@@ -111,7 +111,6 @@ func update_hud():
 	if hearts < 2:
 		get_parent().get_node("HUD").get_node("Heart2").set_texture(empty_heart)
 
-
 func die():
 	if hearts < 1:
 		get_tree().change_scene("res://Scenes/Death Screen.tscn")
