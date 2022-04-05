@@ -5,20 +5,20 @@ var vel : Vector2 = Vector2()
 var input_direction : Vector2 = Vector2()
 
 export var top_speed : int = 45
-export var acceleration : int = 65
-export var deceleration : int = 80
+export var acceleration : int = 55
+export var deceleration : int = 30
 export var speed_power : float = 0.96
 
-export var jump_force : int = 80
+export var jump_force : int = 65
 var jump_timer : float = 0.0
 var coyote_time : float = 0.1
-export var gravity : int = 160
-export var jump_cut_mult : float = 0.8
-export var fall_gravity_mult : float = 2.0
+export var gravity : int = 135
+export var jump_cut_mult : float = 0.4
+export var fall_gravity_mult : float = 2.5
 
 var double_jump_available : bool = true
 
-export var slide_gravity : int = 30
+export var slide_gravity : int = 5
 
 var state : String = "idle"
 var direction : String = "right"
@@ -26,6 +26,9 @@ onready var sprite : AnimatedSprite = get_node("AnimatedSprite")
 
 var hearts : int = 3
 var empty_heart = preload("res://UI Elements/empty_heart.png")
+var full_heart = preload("res://UI Elements/full_heart.png")
+
+var last_checkpoint_location : Vector2 = Vector2(0, 60)
 
 
 func update_input_direction():
@@ -106,14 +109,23 @@ func update_animation():
 		sprite.play("Fall Down")
 
 func update_hud():
-	if hearts < 3:
+	if hearts == 3:
+		get_parent().get_node("HUD").get_node("Heart3").set_texture(full_heart)
+	if hearts == 2:
 		get_parent().get_node("HUD").get_node("Heart3").set_texture(empty_heart)
-	if hearts < 2:
+		get_parent().get_node("HUD").get_node("Heart2").set_texture(full_heart)
+	if hearts == 1:
+		get_parent().get_node("HUD").get_node("Heart3").set_texture(empty_heart)
 		get_parent().get_node("HUD").get_node("Heart2").set_texture(empty_heart)
+		
 
 func die():
 	if hearts < 1:
 		get_tree().change_scene("res://Scenes/Death Screen.tscn")
+	if get_slide_count() > 0:
+		if get_slide_collision(0).collider.name == "Spikes":
+			hearts -= 1
+			global_position = last_checkpoint_location
 
 func _physics_process(delta):
 

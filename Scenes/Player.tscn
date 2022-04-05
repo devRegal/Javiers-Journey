@@ -8,20 +8,13 @@ extents = Vector2( 2.5, 3.5 )
 
 [node name="Player" type="KinematicBody2D" groups=["Player"]]
 script = ExtResource( 2 )
-acceleration = 55
-deceleration = 30
-jump_force = 65
-gravity = 135
-jump_cut_mult = 0.4
-fall_gravity_mult = 2.5
-slide_gravity = 5
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 1 )
 animation = "Idle"
 playing = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Player"]]
 position = Vector2( 1.5, 0.5 )
 scale = Vector2( 0.95, 1 )
 shape = SubResource( 1 )
