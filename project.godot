@@ -14,6 +14,10 @@ config/name="Javiers Journey"
 run/main_scene="res://Scenes/Start Screen.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+GlobalVariables="*res://Scenes/Global Variables.gd"
+
 [display]
 
 window/size/width=160

@@ -14,14 +14,14 @@ frames = ExtResource( 1 )
 animation = "Idle"
 playing = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Player"]]
-position = Vector2( 1.5, 0.5 )
-scale = Vector2( 0.95, 1 )
-shape = SubResource( 1 )
-
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
 smoothing_enabled = true
 smoothing_speed = 10.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 1.5, 0.5 )
+scale = Vector2( 0.95, 1 )
+shape = SubResource( 1 )

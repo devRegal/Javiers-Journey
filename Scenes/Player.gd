@@ -30,7 +30,6 @@ var full_heart = preload("res://UI Elements/full_heart.png")
 
 var last_checkpoint_location : Vector2 = Vector2(0, 60)
 
-
 func update_input_direction():
 	input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	input_direction.x = round(input_direction.x)
@@ -126,6 +125,10 @@ func die():
 		if get_slide_collision(0).collider.name == "Spikes":
 			hearts -= 1
 			global_position = last_checkpoint_location
+
+func _ready():
+	if GlobalVariables.last_major_checkpoint_location:
+		global_position = GlobalVariables.last_major_checkpoint_location
 
 func _physics_process(delta):
 

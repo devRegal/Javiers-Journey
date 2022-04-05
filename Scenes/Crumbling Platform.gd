@@ -5,7 +5,6 @@ var state : String = "idle"
 onready var sprite : AnimatedSprite = get_node("AnimatedSprite")
 
 func _process(delta):
-	print(stand_counter)
 	if state == "idle":
 		get_node("CollisionShape2D").set_deferred("disabled", false)
 		sprite.play("Reform")
