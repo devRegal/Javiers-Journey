@@ -9,6 +9,8 @@ func _process(delta):
 func _on_Down_The_Well_body_entered(body):
 	if body:
 		if body.is_in_group("Player"):
+			var sprite : AnimatedSprite = get_node("Checkpoints/Checkpoint D1/AnimatedSprite")
+			sprite.play("Wave")
 			var position : Vector2 = get_node("Checkpoints/Checkpoint D1").global_position
 			body.last_checkpoint_location = position
 			GlobalVariables.last_major_checkpoint_location = position
@@ -17,12 +19,16 @@ func _on_Down_The_Well_body_entered(body):
 func _on_Checkpoint_D2_body_entered(body):
 	if body:
 		if body.is_in_group("Player"):
+			var sprite : AnimatedSprite = get_node("Checkpoints/Checkpoint D2/AnimatedSprite")
+			sprite.play("Wave")
 			body.last_checkpoint_location = get_node("Checkpoints/Checkpoint D2").global_position
 
 
 func _on_Checkpoint_D3_body_entered(body):
 	if body:
 		if body.is_in_group("Player"):
+			var sprite : AnimatedSprite = get_node("Checkpoints/Checkpoint D3/AnimatedSprite")
+			sprite.play("Wave")
 			var position : Vector2 = get_node("Checkpoints/Checkpoint D3").global_position
 			body.last_checkpoint_location = position
 			GlobalVariables.last_major_checkpoint_location = position
@@ -32,4 +38,16 @@ func _on_Checkpoint_D3_body_entered(body):
 func _on_Checkpoint_D4_body_entered(body):
 	if body:
 		if body.is_in_group("Player"):
+			var sprite : AnimatedSprite = get_node("Checkpoints/Checkpoint D4/AnimatedSprite")
+			sprite.play("Wave")
 			body.last_checkpoint_location = get_node("Checkpoints/Checkpoint D4").global_position
+
+
+func _on_Checkpoint_D5_body_entered(body):
+	if body:
+		if body.is_in_group("Player"):
+			var sprite : AnimatedSprite = get_node("Checkpoints/Checkpoint D5/AnimatedSprite")
+			sprite.play("Wave")
+			var position : Vector2 = get_node("Checkpoints/Checkpoint D5").global_position
+			body.last_checkpoint_location = position
+			GlobalVariables.last_major_checkpoint_location = position
