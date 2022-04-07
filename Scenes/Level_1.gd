@@ -61,3 +61,18 @@ func _on_Checkpoint_D6_body_entered(body):
 			var position : Vector2 = get_node("Checkpoints/Down/Checkpoint D6").global_position
 			body.last_checkpoint_location = position
 			GlobalVariables.last_major_checkpoint_location = position
+
+
+func _on_Checkpoint_D7_body_entered(body):
+	if body:
+		if body.is_in_group("Player"):
+			var sprite : AnimatedSprite = get_node("Checkpoints/Down/Checkpoint D7/AnimatedSprite")
+			sprite.play("Wave")
+			body.last_checkpoint_location = get_node("Checkpoints/Down/Checkpoint D7").global_position
+
+
+func _on_Portal_body_entered(body):
+	if body:
+		if body.is_in_group("Player"):
+			var position : Vector2 = get_node("Checkpoints/Down/Checkpoint D7").global_position
+			body.global_position = position
