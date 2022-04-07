@@ -15,6 +15,7 @@ var coyote_time : float = 0.1
 export var gravity : int = 135
 export var jump_cut_mult : float = 0.4
 export var fall_gravity_mult : float = 2.5
+var max_fall_speed : int = 300
 
 var double_jump_available : bool = true
 
@@ -58,7 +59,7 @@ func jump_and_fall(delta):
 			vel.y += gravity * delta
 			if !Input.is_action_pressed("jump"):
 				vel.y += abs(vel.y * (1 - jump_cut_mult))
-		else:
+		elif vel.y <= max_fall_speed:
 			vel.y += gravity * delta * fall_gravity_mult
 	if jump_timer < coyote_time and Input.is_action_just_pressed("jump"):
 		vel.y -= jump_force
@@ -66,7 +67,7 @@ func jump_and_fall(delta):
 func double_jump():
 	if is_on_floor() or is_on_wall():
 		double_jump_available = true
-	if Input.is_action_just_pressed("jump") and double_jump_available == true:
+	if Input.is_action_just_pressed("jump") and double_jump_available == true and jump_timer > coyote_time:
 		if !is_on_wall() and !is_on_floor():
 			vel.y = -jump_force
 			double_jump_available = false
