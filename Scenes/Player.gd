@@ -123,7 +123,7 @@ func die():
 	if hearts < 1:
 		get_tree().change_scene("res://Scenes/Death Screen.tscn")
 	if get_slide_count() > 0:
-		if get_slide_collision(0).collider.name == "Spikes":
+		if get_slide_collision(0).collider.name == "Spikes" or get_slide_collision(0).collider.name == "Pink Spikes":
 			hearts -= 1
 			global_position = last_checkpoint_location
 
