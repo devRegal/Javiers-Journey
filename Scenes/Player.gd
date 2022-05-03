@@ -35,7 +35,7 @@ func update_input_direction():
 	input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	input_direction.x = round(input_direction.x)
 	input_direction.y = round(input_direction.y)
-	
+
 
 func update_movement(delta):
 	var desired_speed : float = top_speed * input_direction.x
@@ -125,6 +125,7 @@ func die():
 	if get_slide_count() > 0:
 		if get_slide_collision(0).collider.name == "Spikes" or get_slide_collision(0).collider.name == "Pink Spikes":
 			hearts -= 1
+			state = "respawning"
 			global_position = last_checkpoint_location
 
 func _ready():
@@ -132,7 +133,7 @@ func _ready():
 		global_position = GlobalVariables.last_major_checkpoint_location
 
 func _physics_process(delta):
-
+		
 	vel = move_and_slide_with_snap(vel, Vector2.DOWN, Vector2.UP)
 
 	update_input_direction()
@@ -140,10 +141,10 @@ func _physics_process(delta):
 	jump_and_fall(delta)
 	double_jump()
 	wall_slide()
+	die()
 
 	update_direction()
 	update_state()
 	update_animation()
 
 	update_hud()
-	die()
