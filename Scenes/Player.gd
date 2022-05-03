@@ -30,8 +30,16 @@ var empty_heart = preload("res://UI Elements/empty_heart.png")
 var full_heart = preload("res://UI Elements/full_heart.png")
 
 var last_checkpoint_location : Vector2 = Vector2(0, 60)
+var respawn_disable_time : float = 0.5
+var respawn_timer : float = respawn_disable_time
 
-func update_input_direction():
+func update_input_direction(delta):
+	if respawn_timer < respawn_disable_time:
+		input_direction = Vector2(0, 0)
+		respawn_timer += delta
+		return
+	elif respawn_timer > 500:
+		respawn_timer = 2
 	input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	input_direction.x = round(input_direction.x)
 	input_direction.y = round(input_direction.y)
@@ -125,7 +133,7 @@ func die():
 	if get_slide_count() > 0:
 		if get_slide_collision(0).collider.name == "Spikes" or get_slide_collision(0).collider.name == "Pink Spikes":
 			hearts -= 1
-			state = "respawning"
+			respawn_timer = 0.0
 			global_position = last_checkpoint_location
 
 func _ready():
@@ -133,10 +141,10 @@ func _ready():
 		global_position = GlobalVariables.last_major_checkpoint_location
 
 func _physics_process(delta):
-		
+
 	vel = move_and_slide_with_snap(vel, Vector2.DOWN, Vector2.UP)
 
-	update_input_direction()
+	update_input_direction(delta)
 	update_movement(delta)
 	jump_and_fall(delta)
 	double_jump()
