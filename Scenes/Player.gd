@@ -60,8 +60,9 @@ func update_movement(delta):
 func jump_and_fall(delta):
 	if is_on_floor():
 		jump_timer = 0.0
-		state = "idle"
 	else:
+		if is_on_wall():
+			jump_timer = 0.0
 		jump_timer += delta
 		if vel.y < 0:
 			vel.y += gravity * delta
@@ -79,6 +80,11 @@ func double_jump():
 		if !is_on_wall() and !is_on_floor():
 			vel.y = -jump_force
 			double_jump_available = false
+			
+func wall_jump():
+	if is_on_wall() and Input.is_action_just_pressed("jump"):
+		vel.x = get_slide_collision(0).normal.x * jump_force
+		vel.y = -jump_force
 
 func wall_slide():
 	if state == "sliding":
@@ -149,6 +155,7 @@ func _physics_process(delta):
 	jump_and_fall(delta)
 	double_jump()
 	wall_slide()
+	wall_jump()
 	die()
 
 	update_direction()
