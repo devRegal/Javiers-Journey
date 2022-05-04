@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Animations/Bear Boss.res" type="SpriteFrames" id=1]
+[ext_resource path="res://Scenes/BearHeadScript.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 2.5, 2 )
+
+[node name="BearHEAD" type="Node2D"]
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+script = ExtResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="KinematicBody2D"]
+frames = ExtResource( 1 )
+animation = "Calm Idle"
+playing = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="KinematicBody2D"]
+visible = false
+polygon = PoolVector2Array( -10, -5, -10, 13, -14, 13, -14, 16, 9, 16, 16, 11, 16, 0, 13, -11, 10, -14, 7, -14, 5, -11, 0, -11, -2, -14, -5, -14, -8, -10, -8, -6 )
+
+[node name="TopChecker" type="Area2D" parent="KinematicBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D/TopChecker"]
+position = Vector2( -11.5, 9 )
+shape = SubResource( 1 )
+
+[node name="SideChecker" type="Area2D" parent="KinematicBody2D"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="KinematicBody2D/SideChecker"]
+visible = false
+scale = Vector2( 1.1, 1.1 )
+polygon = PoolVector2Array( -10, -5, -10, 13, -14, 13, -14, 16, 9, 16, 16, 11, 16, 0, 13, -11, 10, -14, 7, -14, 5, -11, 0, -11, -2, -14, -5, -14, -8, -10, -8, -6 )
+
+[node name="Timer" type="Timer" parent="KinematicBody2D"]
+wait_time = 1.5
+
+[connection signal="body_entered" from="KinematicBody2D/TopChecker" to="KinematicBody2D" method="_on_TopChecker_body_entered"]
+[connection signal="body_entered" from="KinematicBody2D/SideChecker" to="KinematicBody2D" method="_on_SideChecker_body_entered"]
+[connection signal="timeout" from="KinematicBody2D/Timer" to="KinematicBody2D" method="_on_Timer_timeout"]

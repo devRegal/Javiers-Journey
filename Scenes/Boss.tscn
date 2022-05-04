@@ -1,0 +1,58 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scenes/Enemy.gd" type="Script" id=1]
+[ext_resource path="res://Animations/bear.res" type="SpriteFrames" id=2]
+
+[sub_resource type="RectangleShape2D" id=43]
+extents = Vector2( 4.2374, 5.78085 )
+
+[sub_resource type="RectangleShape2D" id=44]
+extents = Vector2( 2.38264, 0.584651 )
+
+[sub_resource type="RectangleShape2D" id=45]
+extents = Vector2( 4.808, 4.7299 )
+
+[node name="Boss" type="Node2D"]
+
+[node name="Enemy" type="KinematicBody2D" parent="."]
+position = Vector2( -7, -4 )
+script = ExtResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Enemy"]
+position = Vector2( 7.0392, 4.6735 )
+scale = Vector2( 0.987807, 0.987807 )
+frames = ExtResource( 2 )
+animation = "Normal"
+frame = 3
+playing = true
+__meta__ = {
+"_editor_description_": "YXNlcHJpdGVfd2l6YXJkX2NvbmZpZwpzb3VyY2V8PQpsYXllcnw9Cm9wX2V4cHw9VHJ1ZQpvX2ZvbGRlcnw9Cm9fbmFtZXw9Cm9ubHlfdmlzaWJsZXw9RmFsc2UKb19leF9wfD0K"
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
+position = Vector2( 7.05458, 5.30672 )
+shape = SubResource( 43 )
+
+[node name="FloorChecker" type="RayCast2D" parent="Enemy"]
+position = Vector2( 7.25189, 3.84967 )
+enabled = true
+cast_to = Vector2( 0, 15 )
+
+[node name="TopChecker" type="Area2D" parent="Enemy"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy/TopChecker"]
+position = Vector2( 7.10804, -1.44062 )
+shape = SubResource( 44 )
+
+[node name="SideChecker" type="Area2D" parent="Enemy"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy/SideChecker"]
+position = Vector2( 7.14105, 4.33366 )
+shape = SubResource( 45 )
+
+[node name="Timer" type="Timer" parent="Enemy"]
+wait_time = 1.5
+
+[connection signal="body_entered" from="Enemy/TopChecker" to="Enemy" method="_on_TopChecker_body_entered"]
+[connection signal="body_entered" from="Enemy/SideChecker" to="Enemy" method="_on_SideChecker_body_entered"]
+[connection signal="timeout" from="Enemy/Timer" to="Enemy" method="_on_Timer_timeout"]

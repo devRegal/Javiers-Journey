@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://Scenes/Grass and Dirt Tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/HUD.tscn" type="PackedScene" id=2]
@@ -19,6 +19,8 @@
 [ext_resource path="res://Animations/Portal.res" type="SpriteFrames" id=17]
 [ext_resource path="res://Scenes/Cloud Tiles.tres" type="TileSet" id=18]
 [ext_resource path="res://Scenes/Pink Spikes.tres" type="TileSet" id=19]
+[ext_resource path="res://Scenes/Boss.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Scenes/FinalBoss.tscn" type="PackedScene" id=21]
 
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 7.89474, 3.5 )
@@ -205,6 +207,65 @@ tracks/0/keys = {
 
 [node name="Level 1" type="Node2D"]
 script = ExtResource( 8 )
+
+[node name="Node" type="Node" parent="."]
+
+[node name="Boss" parent="Node" instance=ExtResource( 20 )]
+position = Vector2( -129, 33 )
+
+[node name="Boss2" parent="Node" instance=ExtResource( 20 )]
+position = Vector2( -148, -168 )
+
+[node name="Boss3" parent="Node" instance=ExtResource( 20 )]
+position = Vector2( -36, -224 )
+
+[node name="Boss4" parent="Node" instance=ExtResource( 20 )]
+position = Vector2( 49, -264 )
+
+[node name="Boss5" parent="Node" instance=ExtResource( 20 )]
+position = Vector2( 150, -279 )
+
+[node name="Boss6" parent="Node" instance=ExtResource( 20 )]
+position = Vector2( 208, -270 )
+
+[node name="Boss7" parent="Node" instance=ExtResource( 20 )]
+position = Vector2( 273, -296 )
+
+[node name="Boss8" parent="Node" instance=ExtResource( 20 )]
+position = Vector2( 346, -350 )
+
+[node name="Boss9" parent="Node" instance=ExtResource( 20 )]
+position = Vector2( 272, -374 )
+
+[node name="Boss10" parent="Node" instance=ExtResource( 20 )]
+position = Vector2( 367, -471 )
+
+[node name="Boss11" parent="Node" instance=ExtResource( 20 )]
+position = Vector2( 389, -595 )
+
+[node name="Boss12" parent="Node" instance=ExtResource( 20 )]
+position = Vector2( 657, -319 )
+
+[node name="Boss13" parent="Node" instance=ExtResource( 20 )]
+position = Vector2( 682, -341 )
+
+[node name="Boss14" parent="Node" instance=ExtResource( 20 )]
+position = Vector2( 926, -286 )
+
+[node name="Boss15" parent="Node" instance=ExtResource( 20 )]
+position = Vector2( 924, -670 )
+
+[node name="Boss16" parent="Node" instance=ExtResource( 20 )]
+position = Vector2( 1105, -774 )
+
+[node name="Boss17" parent="Node" instance=ExtResource( 20 )]
+position = Vector2( 1274, -776 )
+
+[node name="Boss18" parent="Node" instance=ExtResource( 20 )]
+position = Vector2( 299, 640 )
+
+[node name="Boss19" parent="Node" instance=ExtResource( 20 )]
+position = Vector2( 1402, 104 )
 
 [node name="Below Ground" type="ParallaxBackground" parent="."]
 
@@ -975,6 +1036,12 @@ autoplay = "Move"
 anims/Move = SubResource( 2 )
 
 [node name="HUD" parent="." instance=ExtResource( 2 )]
+
+[node name="Boss" parent="." instance=ExtResource( 20 )]
+position = Vector2( 31, 57 )
+
+[node name="BearHEAD" parent="." instance=ExtResource( 21 )]
+position = Vector2( 1494, 45 )
 
 [connection signal="body_entered" from="Checkpoints/Down/Checkpoint D1" to="." method="_on_Down_The_Well_body_entered"]
 [connection signal="body_entered" from="Checkpoints/Down/Checkpoint D2" to="." method="_on_Checkpoint_D2_body_entered"]
