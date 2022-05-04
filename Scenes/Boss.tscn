@@ -23,7 +23,6 @@ position = Vector2( 7.0392, 4.6735 )
 scale = Vector2( 0.987807, 0.987807 )
 frames = ExtResource( 2 )
 animation = "Normal"
-frame = 3
 playing = true
 __meta__ = {
 "_editor_description_": "YXNlcHJpdGVfd2l6YXJkX2NvbmZpZwpzb3VyY2V8PQpsYXllcnw9Cm9wX2V4cHw9VHJ1ZQpvX2ZvbGRlcnw9Cm9fbmFtZXw9Cm9ubHlfdmlzaWJsZXw9RmFsc2UKb19leF9wfD0K"

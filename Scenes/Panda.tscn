@@ -1,0 +1,103 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Animations/Panda_Idle.png" type="Texture" id=1]
+[ext_resource path="res://Animations/Panda_Mad.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/Panda.gd" type="Script" id=3]
+
+[sub_resource type="AtlasTexture" id=46]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=47]
+atlas = ExtResource( 2 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=48]
+atlas = ExtResource( 2 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=49]
+atlas = ExtResource( 2 )
+region = Rect2( 96, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=50]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=51]
+atlas = ExtResource( 1 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=52]
+atlas = ExtResource( 1 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=53]
+atlas = ExtResource( 1 )
+region = Rect2( 96, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=54]
+animations = [ {
+"frames": [ SubResource( 46 ), SubResource( 47 ), SubResource( 48 ), SubResource( 49 ) ],
+"loop": true,
+"name": "angry",
+"speed": 6.0
+}, {
+"frames": [ SubResource( 50 ), SubResource( 51 ), SubResource( 52 ), SubResource( 53 ) ],
+"loop": true,
+"name": "idle",
+"speed": 6.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=43]
+extents = Vector2( 4.2374, 5.78085 )
+
+[sub_resource type="RectangleShape2D" id=44]
+extents = Vector2( 2.38264, 0.584651 )
+
+[sub_resource type="RectangleShape2D" id=45]
+extents = Vector2( 4.808, 4.7299 )
+
+[node name="Panda" type="Node2D"]
+
+[node name="Enemy" type="KinematicBody2D" parent="."]
+position = Vector2( -7, -4 )
+script = ExtResource( 3 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Enemy"]
+position = Vector2( 7, 6 )
+scale = Vector2( 1.0907, 1.0907 )
+frames = SubResource( 54 )
+animation = "idle"
+playing = true
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
+position = Vector2( 7.05458, 5.30672 )
+shape = SubResource( 43 )
+
+[node name="FloorChecker" type="RayCast2D" parent="Enemy"]
+position = Vector2( 6.986, 4.01 )
+enabled = true
+cast_to = Vector2( 0, 15 )
+
+[node name="TopChecker" type="Area2D" parent="Enemy"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy/TopChecker"]
+position = Vector2( 7.10804, -1.44062 )
+shape = SubResource( 44 )
+
+[node name="SideChecker" type="Area2D" parent="Enemy"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy/SideChecker"]
+position = Vector2( 7.14105, 4.33366 )
+shape = SubResource( 45 )
+
+[node name="Timer" type="Timer" parent="Enemy"]
+wait_time = 1.5
+
+[connection signal="body_entered" from="Enemy/TopChecker" to="Enemy" method="_on_TopChecker_body_entered"]
+[connection signal="body_entered" from="Enemy/SideChecker" to="Enemy" method="_on_SideChecker_body_entered"]
+[connection signal="timeout" from="Enemy/Timer" to="Enemy" method="_on_Timer_timeout"]
