@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://Scenes/Grass and Dirt Tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/HUD.tscn" type="PackedScene" id=2]
@@ -21,6 +21,7 @@
 [ext_resource path="res://Scenes/Pink Spikes.tres" type="TileSet" id=19]
 [ext_resource path="res://Scenes/Boss.tscn" type="PackedScene" id=20]
 [ext_resource path="res://Scenes/FinalBoss.tscn" type="PackedScene" id=21]
+[ext_resource path="res://Scenes/Panda.tscn" type="PackedScene" id=22]
 
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 7.89474, 3.5 )
@@ -208,75 +209,83 @@ tracks/0/keys = {
 [node name="Level 1" type="Node2D"]
 script = ExtResource( 8 )
 
-[node name="Node" type="Node" parent="."]
+[node name="Pandas" type="Node" parent="."]
 
-[node name="Boss" parent="Node" instance=ExtResource( 20 )]
-position = Vector2( -129, 33 )
+[node name="Panda" parent="Pandas" instance=ExtResource( 22 )]
+position = Vector2( 50, -256 )
 
-[node name="Boss2" parent="Node" instance=ExtResource( 20 )]
-position = Vector2( -148, -168 )
+[node name="Panda2" parent="Pandas" instance=ExtResource( 22 )]
+position = Vector2( 151, -281 )
 
-[node name="Boss3" parent="Node" instance=ExtResource( 20 )]
-position = Vector2( -36, -224 )
+[node name="Panda3" parent="Pandas" instance=ExtResource( 22 )]
+position = Vector2( 209, -273 )
 
-[node name="Boss4" parent="Node" instance=ExtResource( 20 )]
-position = Vector2( 49, -264 )
+[node name="Panda4" parent="Pandas" instance=ExtResource( 22 )]
+position = Vector2( 274, -297 )
 
-[node name="Boss5" parent="Node" instance=ExtResource( 20 )]
-position = Vector2( 150, -279 )
+[node name="Panda5" parent="Pandas" instance=ExtResource( 22 )]
+position = Vector2( 273, -376 )
 
-[node name="Boss6" parent="Node" instance=ExtResource( 20 )]
-position = Vector2( 208, -270 )
+[node name="Panda6" parent="Pandas" instance=ExtResource( 22 )]
+position = Vector2( 345, -352 )
 
-[node name="Boss7" parent="Node" instance=ExtResource( 20 )]
-position = Vector2( 273, -296 )
+[node name="Panda7" parent="Pandas" instance=ExtResource( 22 )]
+position = Vector2( 370, -472 )
 
-[node name="Boss8" parent="Node" instance=ExtResource( 20 )]
-position = Vector2( 346, -350 )
+[node name="Panda8" parent="Pandas" instance=ExtResource( 22 )]
+position = Vector2( 657, -321 )
 
-[node name="Boss9" parent="Node" instance=ExtResource( 20 )]
-position = Vector2( 272, -374 )
+[node name="Panda9" parent="Pandas" instance=ExtResource( 22 )]
+position = Vector2( 681, -343 )
 
-[node name="Boss10" parent="Node" instance=ExtResource( 20 )]
-position = Vector2( 367, -471 )
+[node name="Panda10" parent="Pandas" instance=ExtResource( 22 )]
+position = Vector2( 928, -287 )
 
-[node name="Boss11" parent="Node" instance=ExtResource( 20 )]
-position = Vector2( 389, -595 )
+[node name="Panda11" parent="Pandas" instance=ExtResource( 22 )]
+position = Vector2( 924, -672 )
 
-[node name="Boss12" parent="Node" instance=ExtResource( 20 )]
-position = Vector2( 657, -319 )
-
-[node name="Boss13" parent="Node" instance=ExtResource( 20 )]
-position = Vector2( 682, -341 )
-
-[node name="Boss14" parent="Node" instance=ExtResource( 20 )]
-position = Vector2( 926, -286 )
-
-[node name="Boss15" parent="Node" instance=ExtResource( 20 )]
-position = Vector2( 924, -670 )
-
-[node name="Boss16" parent="Node" instance=ExtResource( 20 )]
-position = Vector2( 1105, -774 )
-
-[node name="Boss17" parent="Node" instance=ExtResource( 20 )]
+[node name="Panda13" parent="Pandas" instance=ExtResource( 22 )]
 position = Vector2( 1274, -776 )
 
-[node name="Boss18" parent="Node" instance=ExtResource( 20 )]
+[node name="BearMinions" type="Node" parent="."]
+
+[node name="Boss" parent="BearMinions" instance=ExtResource( 20 )]
+position = Vector2( -129, 33 )
+
+[node name="Boss2" parent="BearMinions" instance=ExtResource( 20 )]
+position = Vector2( -148, -168 )
+
+[node name="Boss3" parent="BearMinions" instance=ExtResource( 20 )]
+position = Vector2( -36, -224 )
+
+[node name="Boss18" parent="BearMinions" instance=ExtResource( 20 )]
 position = Vector2( 299, 640 )
 
-[node name="Boss19" parent="Node" instance=ExtResource( 20 )]
+[node name="Boss19" parent="BearMinions" instance=ExtResource( 20 )]
 position = Vector2( 1402, 104 )
+
+[node name="Boss20" parent="BearMinions" instance=ExtResource( 20 )]
+position = Vector2( 43, 57 )
+
+[node name="BearHEAD" parent="." instance=ExtResource( 21 )]
+position = Vector2( 1494, 45 )
 
 [node name="Below Ground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="Below Ground"]
 position = Vector2( 41, 1664 )
 motion_mirroring = Vector2( 3200, 3200 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Sprite" type="Sprite" parent="Below Ground/ParallaxLayer"]
 texture = ExtResource( 7 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 3200, 3200 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Above Background" type="ParallaxBackground" parent="."]
 script = ExtResource( 13 )
@@ -284,27 +293,42 @@ script = ExtResource( 13 )
 [node name="Sky" type="ParallaxLayer" parent="Above Background"]
 position = Vector2( 0, -14 )
 motion_mirroring = Vector2( 640, 0 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Sprite" type="Sprite" parent="Above Background/Sky"]
 position = Vector2( -105, -568 )
 texture = ExtResource( 16 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 6400, 1280 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Mountains" type="ParallaxLayer" parent="Above Background"]
 motion_scale = Vector2( 0.05, 1 )
 motion_mirroring = Vector2( 1024, 0 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Sprite" type="Sprite" parent="Above Background/Mountains"]
 position = Vector2( 0, 32 )
 texture = ExtResource( 12 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 1024, 64 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Clouds" type="ParallaxLayer" parent="Above Background"]
 position = Vector2( 2, -562 )
 motion_scale = Vector2( 0.3, 1 )
 motion_mirroring = Vector2( 8192, 0 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Sprite" type="Sprite" parent="Above Background/Clouds"]
 position = Vector2( 0, 50 )
@@ -312,6 +336,9 @@ scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 10 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 8192, 4480 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Trees" type="ParallaxLayer" parent="Above Background"]
 motion_scale = Vector2( 0.9, 1 )
@@ -546,7 +573,7 @@ scale = Vector2( 3, 3 )
 scale = Vector2( 0.5, 0.5 )
 frames = ExtResource( 17 )
 animation = "Pulse"
-frame = 1
+frame = 3
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collectables/Portal"]
@@ -1036,12 +1063,6 @@ autoplay = "Move"
 anims/Move = SubResource( 2 )
 
 [node name="HUD" parent="." instance=ExtResource( 2 )]
-
-[node name="Boss" parent="." instance=ExtResource( 20 )]
-position = Vector2( 31, 57 )
-
-[node name="BearHEAD" parent="." instance=ExtResource( 21 )]
-position = Vector2( 1494, 45 )
 
 [connection signal="body_entered" from="Checkpoints/Down/Checkpoint D1" to="." method="_on_Down_The_Well_body_entered"]
 [connection signal="body_entered" from="Checkpoints/Down/Checkpoint D2" to="." method="_on_Checkpoint_D2_body_entered"]
