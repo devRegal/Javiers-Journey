@@ -71,7 +71,7 @@ func jump_and_fall(delta):
 		elif vel.y <= max_fall_speed:
 			vel.y += gravity * delta * fall_gravity_mult
 	if jump_timer < coyote_time and Input.is_action_just_pressed("jump"):
-		vel.y -= jump_force
+		vel.y = -jump_force
 		
 func double_jump():
 	if is_on_floor() or is_on_wall():
@@ -83,7 +83,7 @@ func double_jump():
 			
 func wall_jump():
 	if is_on_wall() and Input.is_action_just_pressed("jump"):
-		vel.x = get_slide_collision(0).normal.x * jump_force
+		vel.x = get_slide_collision(0).normal.x * jump_force * 2
 		vel.y = -jump_force
 
 func wall_slide():
